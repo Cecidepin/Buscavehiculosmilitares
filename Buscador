@@ -1,0 +1,19 @@
+word_list = ['T-62', 'dog', 'flower', 'tree']
+from google_images_search import GoogleImagesSearch
+
+# Create an instance of GoogleImagesSearch with your API key and CX
+gis = GoogleImagesSearch('<AIzaSyAHuTC6ZmDuP8ML-KeIyQEe78CtN9f5tfQ>', '<129538536302-s8u4sp0996nsp2unldllm896g9c6ue2r.apps.googleusercontent.com>')
+
+# Iterate through the list of words
+for word in word_list:
+    # Search for images for each word
+    search_params = {
+        'q': word,
+        'num': 1,  # Number of images to fetch per word
+        'imgSize': 'large'  # Specify the image size, if needed
+    }
+    gis.search(search_params)
+    
+    # Fetch the URLs of the fetched images
+    for image in gis.results():
+        print(f"Word: {word}, Image URL: {image.url}")
